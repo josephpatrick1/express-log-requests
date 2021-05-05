@@ -3,14 +3,17 @@ import express, { Request, Response, NextFunction } from "express";
 const app = express();
 
 app.use((req: Request, res: Response) => {
-    console.log({
+    const request = {
         "method": req.method,
         "body": req.body,
         "url": req.url,
-        "status": req.statusCode,
+        "hostname": req.hostname,
+        "xhr": req.xhr,
+        "remoteAddress": req.ip,
         "headers": req.headers
-    });
-    res.send("OK!");
+    };
+    console.log(request);
+    res.send(request);
 })
 
 const port = 4444;
